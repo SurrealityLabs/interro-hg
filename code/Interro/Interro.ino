@@ -73,31 +73,31 @@ void loop(void) {
     } 
     else if(Player2Button.fallingEdge()) {
       activePlayer = 2;
-      currentState = 2;
+      currentState = 1;
     } 
     else if(Player3Button.fallingEdge()) {
       activePlayer = 3;
-      currentState = 3;
+      currentState = 1;
     } 
     else if(Player4Button.fallingEdge()) {
       activePlayer = 4;
-      currentState = 4;
+      currentState = 1;
     } 
     else if(Player5Button.fallingEdge()) {
       activePlayer = 5;
-      currentState = 5;
+      currentState = 1;
     } 
     else if(Player6Button.fallingEdge()) {
       activePlayer = 6;
-      currentState = 6;
+      currentState = 1;
     } 
     else if(Player7Button.fallingEdge()) {
       activePlayer = 7;
-      currentState = 7;
+      currentState = 1;
     } 
     else if(Player8Button.fallingEdge()) {
       activePlayer = 8;
-      currentState = 8;
+      currentState = 1;
     } 
     else {
       activePlayer = 0;
@@ -142,46 +142,46 @@ void setPlayerTone(uint8_t playerNum) {
 }
 
 void setPlayerLEDs(uint8_t playerNum) {
-  digitalWrite(Player1LED, 0);
+  digitalWrite(Player1LED, 1);
   pinMode(Player1LED, OUTPUT);
-  digitalWrite(Player2LED, 0);
+  digitalWrite(Player2LED, 1);
   pinMode(Player2LED, OUTPUT);
-  digitalWrite(Player3LED, 0);
+  digitalWrite(Player3LED, 1);
   pinMode(Player3LED, OUTPUT);
-  digitalWrite(Player4LED, 0);
+  digitalWrite(Player4LED, 1);
   pinMode(Player4LED, OUTPUT);
-  digitalWrite(Player5LED, 0);
+  digitalWrite(Player5LED, 1);
   pinMode(Player5LED, OUTPUT);
-  digitalWrite(Player6LED, 0);
+  digitalWrite(Player6LED, 1);
   pinMode(Player6LED, OUTPUT);
-  digitalWrite(Player7LED, 0);
+  digitalWrite(Player7LED, 1);
   pinMode(Player7LED, OUTPUT);
-  digitalWrite(Player8LED, 0);
+  digitalWrite(Player8LED, 1);
   pinMode(Player8LED, OUTPUT);
 
   if(playerNum == 1) {
-    digitalWrite(Player1LED, 1);
+    digitalWrite(Player1LED, 0);
   } 
   else if(playerNum == 2) {
-    digitalWrite(Player2LED, 1);
+    digitalWrite(Player2LED, 0);
   } 
   else if(playerNum == 3) {
-    digitalWrite(Player3LED, 1);
+    digitalWrite(Player3LED, 0);
   } 
   else if(playerNum == 4) {
-    digitalWrite(Player4LED, 1);
+    digitalWrite(Player4LED, 0);
   } 
   else if(playerNum == 5) {
-    digitalWrite(Player5LED, 1);
+    digitalWrite(Player5LED, 0);
   } 
   else if(playerNum == 6) {
-    digitalWrite(Player6LED, 1);
+    digitalWrite(Player6LED, 0);
   } 
   else if(playerNum == 7) {
-    digitalWrite(Player7LED, 1);
+    digitalWrite(Player7LED, 0);
   } 
   else if(playerNum == 8) {
-    digitalWrite(Player8LED, 1);
+    digitalWrite(Player8LED, 0);
   }
 }
 
