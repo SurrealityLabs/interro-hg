@@ -22,11 +22,10 @@ Bounce ResetButton = Bounce(16, 10);
 #define toneOutput 10
 #define readyOutput 9
 
-const long toneLength = 500;
-const long autoResetLength = 10000;
-const int autoResetDelay = 5000;
+const unsigned long toneLength = 1000;
+const unsigned long autoResetLength = 10000;
 const int playerTones[] = {
-  0, 2000, 2000, 2000, 2000, 2400, 2400, 2400, 2400};
+  0, 1800, 1800, 1800, 1800, 2400, 2400, 2400, 2400};
 
 uint8_t currentState = 0;
 
@@ -40,8 +39,8 @@ void setup(void) {
 
 void loop(void) {
   static uint8_t activePlayer = 0;
-  static long toneStartTime = 0;
-  static long autoResetStart = 0;
+  static unsigned long toneStartTime = 0;
+  static unsigned long autoResetStart = 0;
 
   ResetButton.update();
 
@@ -65,7 +64,7 @@ void loop(void) {
     Player7Button.update();
     Player8Button.update();
 
-    toneStartTime = millis() + toneLength;
+    toneStartTime = millis();
 
     if(Player1Button.fallingEdge()) {
       activePlayer = 1;
@@ -105,29 +104,33 @@ void loop(void) {
     }
     break;
   case 1:
-    setPlayerTone(activePlayer);
     setPlayerLEDs(activePlayer);
     digitalWrite(readyOutput, 0);
-
+    currentState = 2;
+    setPlayerTone(activePlayer);
+    break;
+  case 2:
     if(millis() - toneStartTime >= toneLength) {
-      currentState = 2;
-      autoResetStart = millis();
+      currentState = 3;      
     } 
     else {
-      currentState = 1;
+      currentState = 2;
     }
 
     break;
-  case 2:
-    noTone(toneOutput);
+  case 3:
+    autoResetStart = millis();
     setPlayerLEDs(activePlayer);
     digitalWrite(readyOutput, 0);
-
+    disablePlayerTone();
+    currentState = 4;
+    break;
+  case 4:
     if(millis() - autoResetStart >= autoResetLength) {
       currentState = 0;
     } 
     else {
-      currentState = 2;
+      currentState = 4;
     }
 
     break;
@@ -139,6 +142,10 @@ void loop(void) {
 
 void setPlayerTone(uint8_t playerNum) {
   tone(toneOutput, playerTones[playerNum]);
+}
+
+void disablePlayerTone() {
+  noTone(toneOutput);
 }
 
 void setPlayerLEDs(uint8_t playerNum) {
